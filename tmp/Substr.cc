@@ -8,42 +8,33 @@ using namespace std;
 
 string Substr::getMaxLengthStr(const string& str)
 {
-   int begin, end, length;
-   string temp, result;
+   int begin = 0;
    char current;
-   bool existed{false};
-   for (int i = 0; i < str.length(); ++i) {
+   string currentSubstr;
+
+   for (int i = 1; i < str.length(); i++) {
        current = str.at(i);
+       currentSubstr = str.substr(begin, i - begin);
+       cout << "currentSubstr [" << currentSubstr << "]" << endl;
 
-       if (i == 0) {
-          temp = current;
-          length = 1;
-          begin = end = i;
-       } else {
-          end = i;
-          for (int j = 0; j < temp.length(); ++j) {
-             if (current == temp.at(j)) {
-                existed = true;
-                break;
-             } else {
-                existed = false;
-                length++;
-             }
-          }
+       if (existDuplicateChar(currentSubstr, current)) {
+               setMax(currentSubstr);
+               begin = i;
+               continue;
        }
 
-       if (!existed) {
-          if (i > 0) {
-             temp += current;
-          }
-       } else {
-          if (end - begin > length) {
-             temp = current;
-             begin = i;
-             length = 1;
-          }
-       }
    }
 
-   return temp;
+   return maxSubstr;
+}
+
+bool Substr::existDuplicateChar(const string& substr, const char currentChar)
+{
+        return substr.find(currentChar) != string::npos;
+}
+
+void Substr::setMax(const string& currentSubstr)
+{
+        if (maxSubstr.length() < currentSubstr.length())
+                maxSubstr = currentSubstr;
 }

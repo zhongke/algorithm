@@ -9,4 +9,9 @@ public:
         ~Substr() {}
 
         std::string getMaxLengthStr(const std::string& str);
+private:
+        bool existDuplicateChar(const std::string& substr, const char currentChar);
+        void setMax(const std::string& currentSubstr);
+
+        std::string maxSubstr;
 };
