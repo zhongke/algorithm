@@ -14,15 +14,17 @@ string Substr::getMaxLengthStr(const string& str)
 
    for (int i = 1; i < str.length(); i++) {
        current = str.at(i);
+       cout << "current [" << current << "]" << endl;
        currentSubstr = str.substr(begin, i - begin);
        cout << "currentSubstr [" << currentSubstr << "]" << endl;
 
        if (existDuplicateChar(currentSubstr, current)) {
-               setMax(currentSubstr);
                begin = i;
-               continue;
+       } else {
+              currentSubstr += current;
        }
 
+       setMax(currentSubstr);
    }
 
    return maxSubstr;
