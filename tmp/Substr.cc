@@ -8,17 +8,17 @@ using namespace std;
 string Substr::getMaxLengthStr(const string& str)
 {
        int begin = 0;
-       char current;
+       char currentChar;
        string currentSubstr;
 
        for (int i = 1; i < str.length(); i++) {
-              current = str.at(i);
+              currentChar = str.at(i);
               currentSubstr = str.substr(begin, i - begin);
 
-              if (existDuplicateChar(currentSubstr, current)) {
+              if (existDuplicateChar(currentSubstr, currentChar)) {
                      begin = i;
               } else {
-                     currentSubstr += current;
+                     currentSubstr += currentChar;
               }
 
               setMax(currentSubstr);
