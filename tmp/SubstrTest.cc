@@ -35,3 +35,20 @@ TEST_F(ASubstr, DuplicateCharInTheMiddleWithMaxLength)
 
         ASSERT_THAT(str.getMaxLengthStr(input), Eq(output));
 }
+
+TEST_F(ASubstr, DuplicateCharInTheEndWithMaxLength)
+{
+       input  = "abcdd";
+       output = "abcd";
+
+       ASSERT_THAT(str.getMaxLengthStr(input), Eq(output));
+}
+
+
+TEST_F(ASubstr, DuplicateCharWithDifferentLength)
+{
+       input  = "ceabcdabhijklmnmced";
+       output = "cdabhijklmn";
+
+       ASSERT_THAT(str.getMaxLengthStr(input), Eq(output));
+}
